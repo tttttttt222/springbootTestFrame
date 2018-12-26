@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.examples.demo.dao.mapper.PersonDao">
+
+    <sql id="allColumn">
+        id,
+        age,
+        name,
+        sex
+    </sql>
+
+
+    <select id="queryPerson" resultType="com.examples.demo.dao.model.Person" parameterType="java.lang.Long">
+        SELECT
+        <include refid="allColumn"/>
+        FROM person
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>

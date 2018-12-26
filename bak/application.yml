@@ -1,0 +1,21 @@
+#server:
+#     port : 8081
+#
+#context:
+#    initializer :
+#          classes : DubboConfigurationApplicationContextInitializer
+#
+#dubbo:
+#      packagename : com.example.com.examples.demo.mapper.service
+#      application :
+#           name : com.examples.demo.mapper-app
+#      registry:
+#           address :  127.0.0.1:2181
+#           protocol : zookeeper
+#      protocol :
+#           name : dubbo
+#           port : 20899
+#           threads : 400
+#           host : 127.0.0.1
+#      module:
+#           default : false
