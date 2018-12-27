@@ -8,8 +8,10 @@ import com.examples.demo.service.NormalService;
 import com.examples.demo.service.impl.NormalServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -25,12 +27,25 @@ public class DubboTest {
 	@Reference(version = "1.0.0")
 	private HelloService helloService;
 
+	@Autowired
+	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
 	@Test
 	public void test() throws Exception {
 		String build = helloService.build("123");
 		System.out.println(build);
 		NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
 		normalService.normalServiceTest();
+	}
+
+	@Test
+	public void threadTest() throws Exception {
+		threadPoolTaskExecutor.execute(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("线程启动");
+			}
+		});
 	}
 
 }
