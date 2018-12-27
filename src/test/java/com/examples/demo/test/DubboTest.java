@@ -31,9 +31,13 @@ public class DubboTest {
 	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 	@Test
-	public void test() throws Exception {
+	public void dubboTest() throws Exception {
 		String build = helloService.build("123");
 		System.out.println(build);
+	}
+
+	@Test
+	public void springBeantest() throws Exception {
 		NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
 		normalService.normalServiceTest();
 	}

@@ -3,7 +3,6 @@ package com.examples.demo.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import javax.sql.DataSource;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -11,21 +10,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 /**
  * 项目名称:demo 描述: 创建人:ryw 创建时间:2018/12/25
  */
 @Configuration
-@Slf4j
-@Getter
+@PropertySource("classpath:datasource.properties")
 @MapperScan(basePackages = DataSourceConfig.PACKAGE, sqlSessionFactoryRef = "sqlSessionFactory")
+@Getter
 public class DataSourceConfig {
 
 
 	static final String PACKAGE = "com.examples.demo.dao.mapper";
-	static final String MAPPER_LOCATION = "classpath:mapper/*.xml";
 
+	static final String MAPPER_LOCATION = "classpath:mapper/*.xml";
 
 	@Value("${ds.jdbc.driverClassName}")
 	private String driverClassName;

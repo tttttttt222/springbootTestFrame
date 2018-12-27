@@ -3,6 +3,7 @@ package com.examples.demo.config.dubbo;
 import com.alibaba.dubbo.config.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * 项目名称:com.examples.demo.mapper
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * 创建时间:2018/5/4
  */
 @Configuration
+@PropertySource("classpath:dubbo.properties")
 @ConfigurationProperties(prefix = "spring.dubbo")
 public class DubboProperties {
 
