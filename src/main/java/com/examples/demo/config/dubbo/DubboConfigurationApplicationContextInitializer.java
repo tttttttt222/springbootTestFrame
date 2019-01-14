@@ -25,7 +25,7 @@ public class DubboConfigurationApplicationContextInitializer implements
 			Properties properties = PropertiesLoaderUtils.loadAllProperties("dubbo.properties");
 			String scan = properties.getProperty("spring.dubbo.scan");
 			if (scan != null) {
-				AnnotationBean scanner = BeanUtils.instantiate(AnnotationBean.class);
+				AnnotationBean scanner = BeanUtils.instantiateClass(AnnotationBean.class);
 				scanner.setPackage(scan);
 				scanner.setApplicationContext(applicationContext);
 				applicationContext.addBeanFactoryPostProcessor(scanner);
