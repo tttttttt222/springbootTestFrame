@@ -39,7 +39,7 @@ public class TestController {
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping("/normal")
     public String index() {
         NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
         String s = normalService.normalServiceTest();
