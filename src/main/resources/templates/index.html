@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,11 @@
     <span th:text="${currentDate}"></span>
     <span th:text="${person.getName()}"></span>
     <span th:text="${person.getAge()}"></span>
+</div>
+<div align="center">
+    <input type="text" name="userName" value="James Carrot" th:value="${person.getName()}" />
+</div>
+<div th:text="${person.getSex()}">
 </div>
 </body>
 </html>
