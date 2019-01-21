@@ -2,10 +2,13 @@ package com.examples.demo.test;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.examples.demo.DemoApplication;
+import com.examples.demo.common.utils.ZookeeperLockHelper;
 import com.examples.demo.config.bean.SpringBeanUtil;
 import com.examples.demo.facade.HelloService;
 import com.examples.demo.service.NormalService;
 import com.examples.demo.service.impl.NormalServiceImpl;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableAutoConfiguration
+@Slf4j
 public class DubboTest {
 
 
@@ -29,6 +33,9 @@ public class DubboTest {
 
 	@Autowired
 	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
+	@Autowired
+	private ZookeeperLockHelper zookeeperLockHelper;
 
 	@Test
 	public void dubboTest() throws Exception {
@@ -50,6 +57,33 @@ public class DubboTest {
 				System.out.println("线程启动");
 			}
 		});
+	}
+
+
+	@Test
+	public void threadZkhelper() throws Exception {
+		String KEY = "TASK_ACTIVITY";
+		InterProcessMutex lock = zookeeperLockHelper.createPath(KEY);
+		try {
+			if (null == lock) {
+				log.info("创建并发锁失败！");
+				return;
+			}
+			if (!zookeeperLockHelper.lockAcquired(lock)) {
+				log.info("获取并发锁失败！");
+				return;
+			}
+			log.info("获取到并发锁！开始读取数据......");
+			//todo 业务
+		} catch (Exception e) {
+			log.info("处理异常！", e);
+		} finally {
+			if (lock != null) {
+				//释放锁
+				log.info("释放锁");
+				zookeeperLockHelper.lockRelease(lock, KEY);
+			}
+		}
 	}
 
 }

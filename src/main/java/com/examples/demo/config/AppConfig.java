@@ -1,5 +1,6 @@
 package com.examples.demo.config;
 
+import com.examples.demo.common.utils.ZookeeperLockHelper;
 import com.examples.demo.config.bean.SpringBeanUtil;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +40,20 @@ public class AppConfig {
 		executor.setQueueCapacity(queueCapacity);
 		executor.setRejectedExecutionHandler(new CallerRunsPolicy());
 		return executor;
+	}
+
+
+	@Value("${zookeeper.server.address}")
+	private String zkserverAdress;
+
+	@Bean
+	public ZookeeperLockHelper zookeeperLockHelper() {
+		String lockPrefix = "/lock/baofoo-credit-repayment";
+		String zookeeperAddress = zkserverAdress;
+		int retryInterval = 100;
+		int maxRetryCount = 3;
+		int lockTimeWait = 100;
+		return new ZookeeperLockHelper(lockPrefix, zookeeperAddress, retryInterval, maxRetryCount, lockTimeWait);
 	}
 
 }
