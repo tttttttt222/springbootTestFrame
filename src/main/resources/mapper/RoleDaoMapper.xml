@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.examples.demo.dao.mapper.RoleDao">
+
+    <sql id="allColumn">
+        id,
+        role AS role
+    </sql>
+
+
+    <select id="findRoleById" resultType="com.examples.demo.dao.model.Role" parameterType="java.lang.Long">
+        SELECT
+        <include refid="allColumn"/>
+        FROM role
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>
