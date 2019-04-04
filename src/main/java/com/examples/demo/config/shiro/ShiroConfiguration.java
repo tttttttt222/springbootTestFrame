@@ -1,4 +1,4 @@
-package com.examples.demo.config;
+package com.examples.demo.config.shiro;
 
 import com.examples.demo.service.config.MyShiroRealm;
 import java.util.HashMap;

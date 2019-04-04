@@ -6,6 +6,7 @@ import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class WebController {
 	private PersonService personService;
 
 	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+	@RequiresPermissions("admin/index")
 	public String index(ModelMap map) {
 		// 加入一个属性，用来在模板中读取
 		Person person = personService.queryPerson(1L);

@@ -60,6 +60,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- 热部署组件 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
