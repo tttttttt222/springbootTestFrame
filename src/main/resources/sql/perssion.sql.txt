@@ -1,0 +1,58 @@
+CREATE TABLE `person` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `age` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sex` tinyint(4) DEFAULT '1' COMMENT '男：1 女 0；',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `counter_id` int(11) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `state` tinyint(4) DEFAULT NULL,
+  `m_no` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=587 DEFAULT CHARSET=utf8mb4;
+INSERT INTO `test`.`person` (`id`, `age`, `name`, `sex`, `update_time`, `counter_id`, `create_time`, `state`, `m_no`) VALUES ('1', '22', 'das', '1', '2019-04-18 14:12:25', '12', '2019-04-23 14:12:28', '12', '21');
+INSERT INTO `test`.`person` (`id`, `age`, `name`, `sex`, `update_time`, `counter_id`, `create_time`, `state`, `m_no`) VALUES ('586', '21', 'asdsa', '1', '2019-03-07 18:10:46', '999911', '2019-03-07 18:10:46', '1', 'sdfg322444443242');
+
+
+
+
+CREATE TABLE `role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+INSERT INTO `test`.`role` (`id`, `role`) VALUES ('1', 'admin');
+INSERT INTO `test`.`role` (`id`, `role`) VALUES ('2', 'usr');
+
+
+
+
+
+
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `role_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+INSERT INTO `test`.`user` (`id`, `user_name`, `password`, `role_id`) VALUES ('1', 'user1', '1234', '1');
+INSERT INTO `test`.`user` (`id`, `user_name`, `password`, `role_id`) VALUES ('2', 'user2', '1234', '2');
+
+
+
+
+
+CREATE TABLE `permission` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `permission` varchar(100) DEFAULT NULL,
+  `role_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+INSERT INTO `test`.`permission` (`id`, `permission`, `role_id`) VALUES ('1', 'update', '1');
+INSERT INTO `test`.`permission` (`id`, `permission`, `role_id`) VALUES ('2', 'select', '1');
+INSERT INTO `test`.`permission` (`id`, `permission`, `role_id`) VALUES ('3', 'admin/index', '1');
+
+
+
+
