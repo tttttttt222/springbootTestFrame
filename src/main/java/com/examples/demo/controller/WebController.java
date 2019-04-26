@@ -27,11 +27,11 @@ public class WebController {
 	@Autowired
 	private PersonService personService;
 
-	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/index", method = RequestMethod.POST)
 	@RequiresPermissions("admin/index")
 	public String index(ModelMap map) {
 		// 加入一个属性，用来在模板中读取
-		Person person = personService.queryPerson(1L);
+		Person person = personService.queryPerson(4L);
 		map.addAttribute("person", person);
 		map.addAttribute("currentDate", new Date());
 		// return模板文件的名称，对应src/main/resources/templates/index.html
@@ -47,7 +47,7 @@ public class WebController {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		//进行验证，这里可以捕获异常，然后返回对应信息
 		subject.login(token);
-		return "login";
+		return "forward:/admin/index";
 	}
 
 
