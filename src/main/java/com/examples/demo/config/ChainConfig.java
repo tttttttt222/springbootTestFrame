@@ -1,6 +1,7 @@
 package com.examples.demo.config;
 
 import com.examples.demo.chain.BaseChain;
+import com.examples.demo.service.command.CheckTestCommand;
 import com.examples.demo.service.command.FirstCommand;
 import com.examples.demo.service.command.SecondCommand;
 import com.examples.demo.service.command.ThirdCommand;
@@ -38,6 +39,16 @@ public class ChainConfig {
 	public BaseChain testCommand3(){
 		BaseChain baseChain = new BaseChain();
 		baseChain.addCommand(new ThirdCommand());
+		baseChain.addCommand(new FirstCommand());
+		baseChain.addCommand(new SecondCommand());
+		return baseChain;
+	}
+
+	@Bean
+	public BaseChain testCommand4(){
+		BaseChain baseChain = new BaseChain();
+		baseChain.addCommand(new ThirdCommand());
+		baseChain.addCommand(new CheckTestCommand());
 		baseChain.addCommand(new FirstCommand());
 		baseChain.addCommand(new SecondCommand());
 		return baseChain;
