@@ -1,8 +1,13 @@
 package com.examples.demo.config;
 
+import com.examples.demo.chain.ActionBean;
+import com.examples.demo.chain.ActionListBean;
 import com.examples.demo.chain.BaseChain;
+import com.examples.demo.chain.Command;
+import com.examples.demo.chain.IFBean;
 import com.examples.demo.service.command.CheckTestCommand;
 import com.examples.demo.service.command.FirstCommand;
+import com.examples.demo.service.command.InitCommand;
 import com.examples.demo.service.command.SecondCommand;
 import com.examples.demo.service.command.ThirdCommand;
 import org.springframework.context.annotation.Bean;
@@ -52,6 +57,30 @@ public class ChainConfig {
 		baseChain.addCommand(new FirstCommand());
 		baseChain.addCommand(new SecondCommand());
 		return baseChain;
+	}
+
+
+	@Bean
+	public BaseChain testCommand5(){
+		ActionListBean baseBean = new ActionListBean("next");
+
+		ActionBean actionBean = new ActionBean(new InitCommand());
+		baseBean.addCommand(actionBean);
+
+			IFBean ifBean = new IFBean(new CheckTestCommand());
+
+				ActionListBean actionList2 = new ActionListBean("next");
+				actionList2.addCommand(new FirstCommand());
+				actionList2.addCommand(new SecondCommand());
+
+			ifBean.setCheckOkAction(actionList2);
+
+
+		baseBean.addCommand(ifBean);
+		baseBean.addCommand(new ThirdCommand());
+		baseBean.addCommand(new ThirdCommand());
+
+		return baseBean;
 	}
 
 

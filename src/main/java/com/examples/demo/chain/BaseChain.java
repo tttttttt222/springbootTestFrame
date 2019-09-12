@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.springframework.util.StringUtils;
 
 /**
  * 项目名称:demo 描述: 创建人:ryw 创建时间:2019/4/30
@@ -43,9 +44,23 @@ public class BaseChain implements Chain {
 				}
 			}
 
+			if (this instanceof ActionListBean) {
+				ActionListBean temp = (ActionListBean)this;
+				if (!StringUtils.isEmpty(temp.getWhenBreakOverrideResult()) && "next".equalsIgnoreCase(temp.getWhenBreakOverrideResult())) {
+					return EnumChainResult.CHAIN_NEXT;
+				}
+			}
+
 			return enumChainResult;
 		}
 	}
 
+	public List<Command> getCommandList() {
+		return this.commandList;
+	}
+
+	public void setCommandList(List<Command> commandList) {
+		this.commandList = commandList;
+	}
 
 }

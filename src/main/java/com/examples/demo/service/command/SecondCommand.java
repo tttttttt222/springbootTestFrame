@@ -11,7 +11,8 @@ public class SecondCommand implements Command {
 
 	@Override
 	public EnumChainResult execute(Map context) throws Exception {
-		System.out.println("second-step" + context.get("context"));
+		System.out.println("second-step --" + context.get("context"));
 		return EnumChainResult.CHAIN_NEXT;
+//		return EnumChainResult.CHAIN_BREAK;
 	}
 }

@@ -10,7 +10,8 @@ public class CheckTestCommand extends AbsIFCommand {
 
 	@Override
 	public boolean checkIfCondition(Map context) throws Exception {
-		return false;
+		System.out.println("checkCondition");
+		return true;
 	}
 
 }
