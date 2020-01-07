@@ -17,5 +17,20 @@
         WHERE id = #{id}
     </select>
 
+    <select id="queryPersonAll" resultType="com.examples.demo.dao.model.Person">
+        SELECT
+        <include refid="allColumn"/>
+        FROM person
+    </select>
+
+
+    <insert id="insertPerson" parameterType="com.examples.demo.dao.model.Person" useGeneratedKeys="true"
+      keyProperty="id">
+       INSERT INTO
+            person (age,name,sex)
+        VALUES
+            (#{age}, #{name}, #{sex})
+    </insert>
+
 
 </mapper>

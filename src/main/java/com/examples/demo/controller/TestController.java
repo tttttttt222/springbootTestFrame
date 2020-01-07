@@ -15,43 +15,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * 项目名称:com.examples.demo.mapper
- * 描述:
- * 创建人:ryw
- * 创建时间:2018/5/23
+ * 项目名称:com.examples.demo.mapper 描述: 创建人:ryw 创建时间:2018/5/23
  */
 @RestController
 @Slf4j
 public class TestController {
 
-    @Reference(version = "1.0.0")
-    private EchoService echoService;
+	@Reference(version = "1.0.0")
+	private EchoService echoService;
 
-    @Autowired
-    private PersonService personService;
-
-
-
-    @RequestMapping("/hello")
-    public String hello() {
-        String sss = echoService.echo("sss");
-        return sss;
-    }
+	@Autowired
+	private PersonService personService;
 
 
-    @RequestMapping("/normal")
-    public String index() {
-        NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
-        String s = normalService.normalServiceTest();
-        return s;
-    }
+	@RequestMapping("/hello")
+	public String hello() {
+		String sss = echoService.echo("sss");
+		return sss;
+	}
 
 
-    @RequestMapping("/person/{id}")
-    public Person person(@PathVariable long id) {
-        Person person = personService.queryPerson(id);
-        return person;
-    }
+	@RequestMapping("/normal")
+	public String index() {
+		NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
+		String s = normalService.normalServiceTest();
+		return s;
+	}
 
+
+	@RequestMapping("/person/{id}")
+	public Person person(@PathVariable long id) {
+		Person person = personService.queryPerson(id);
+		return person;
+	}
+
+	@RequestMapping("/person/add")
+	public Boolean person() {
+        Person person = new Person();
+        person.setAge(16);
+        person.setName("abv");
+        person.setSex(1);
+        personService.addPerson(person);
+		return true;
+	}
 
 }

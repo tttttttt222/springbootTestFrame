@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 项目名称:demo 描述: 创建人:ryw 创建时间:2018/12/25
@@ -97,6 +100,20 @@ public class DataSourceConfig {
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(DataSourceConfig.MAPPER_LOCATION));
 		return sessionFactory.getObject();
+	}
+
+	@Bean
+	public DataSourceTransactionManager transactionManager(DataSource dataSource){
+		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+		dataSourceTransactionManager.setDataSource(dataSource);
+		return dataSourceTransactionManager;
+	}
+
+	@Bean
+	public TransactionTemplate transactionTemplate(PlatformTransactionManager transactionManager){
+		TransactionTemplate transactionTemplate = new TransactionTemplate();
+		transactionTemplate.setTransactionManager(transactionManager);
+		return transactionTemplate;
 	}
 
 

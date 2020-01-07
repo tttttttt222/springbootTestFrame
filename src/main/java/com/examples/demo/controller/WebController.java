@@ -25,7 +25,11 @@ public class WebController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap map) {
 		// 加入一个属性，用来在模板中读取
-		Person person = personService.queryPerson(1L);
+//		Person person = personService.queryPerson(1L);
+		Person person = personService.queryPerson(4L);
+		if(person == null){
+			person =new Person();
+		}
 		map.addAttribute("person", person);
 		map.addAttribute("currentDate", new Date());
 		// return模板文件的名称，对应src/main/resources/templates/index.html
