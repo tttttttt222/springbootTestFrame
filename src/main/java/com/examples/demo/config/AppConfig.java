@@ -48,7 +48,7 @@ public class AppConfig {
 
 	@Bean
 	public ZookeeperLockHelper zookeeperLockHelper() {
-		String lockPrefix = "/lock/baofoo-credit-repayment";
+		String lockPrefix = "/lock/demo";
 		String zookeeperAddress = zkserverAdress;
 		int retryInterval = 100;
 		int maxRetryCount = 3;
