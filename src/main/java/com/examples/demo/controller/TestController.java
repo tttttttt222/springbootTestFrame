@@ -39,12 +39,12 @@ public class TestController {
     }
 
 
-    @RequestMapping("/")
-    public String index() {
-        NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
-        String s = normalService.normalServiceTest();
-        return s;
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        NormalService normalService = SpringBeanUtil.getBean("normalServiceImpl", NormalServiceImpl.class);
+//        String s = normalService.normalServiceTest();
+//        return s;
+//    }
 
 
     @RequestMapping("/person/{id}")
