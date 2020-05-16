@@ -8,6 +8,10 @@
         name,
         sex
     </sql>
+    <insert id="insertPerson">
+        INSERT INTO person (age,name,sex,counter_id,state,create_time,update_time)
+        VALUES (#{person.age},#{person.name},#{person.sex},1,1,NOW(),NOW())
+    </insert>
 
 
     <select id="queryPerson" resultType="com.examples.demo.dao.model.Person" parameterType="java.lang.Long">
@@ -15,6 +19,12 @@
         <include refid="allColumn"/>
         FROM person
         WHERE id = #{id}
+    </select>
+
+    <select id="queryPersonAll" resultType="com.examples.demo.dao.model.Person">
+        SELECT
+        <include refid="allColumn"/>
+        FROM person
     </select>
 
 

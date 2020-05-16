@@ -7,10 +7,13 @@ import com.examples.demo.dao.model.Person;
 import com.examples.demo.service.NormalService;
 import com.examples.demo.service.PersonService;
 import com.examples.demo.service.impl.NormalServiceImpl;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -52,6 +55,20 @@ public class TestController {
         Person person = personService.queryPerson(id);
         return person;
     }
+
+
+    @RequestMapping("/personAll")
+    public List<Person> personAll() {
+        List<Person> personAll = personService.queryPersonAll();
+        return personAll;
+    }
+
+
+    @RequestMapping("/addPerson")
+    public Boolean addPerson(@RequestBody Person person) {
+        return personService.insertPerson(person);
+    }
+
 
 
 }
