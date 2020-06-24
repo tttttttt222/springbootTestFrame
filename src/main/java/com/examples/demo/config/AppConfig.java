@@ -25,10 +25,7 @@ public class AppConfig {
 	@Value("${threadPool.queueCapacity}")
 	private int queueCapacity;
 
-	@Bean
-	public SpringBeanUtil springBeanUtil() {
-		return new SpringBeanUtil();
-	}
+
 
 	@Bean
 	public ThreadPoolTaskExecutor threadPoolTaskExecutor() {

@@ -1,5 +1,6 @@
 package com.examples.demo.chain;
 
+import com.examples.demo.config.bean.SpringBeanUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +24,10 @@ public class BaseChain implements Chain {
 		}
 	}
 
+	public void addNameCommand(String commandName , String remark) {
+		Command bean = SpringBeanUtil.getBean(commandName, Command.class);
+		this.addCommand(bean);
+	}
 
 	public EnumChainResult execute(Map context) throws Exception {
 		if (context == null) {

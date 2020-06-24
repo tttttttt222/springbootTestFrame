@@ -5,6 +5,7 @@ import com.examples.demo.chain.ActionListBean;
 import com.examples.demo.chain.BaseChain;
 import com.examples.demo.chain.Command;
 import com.examples.demo.chain.IFBean;
+import com.examples.demo.config.bean.SpringBeanUtil;
 import com.examples.demo.service.command.CheckTestCommand;
 import com.examples.demo.service.command.FirstCommand;
 import com.examples.demo.service.command.InitCommand;
@@ -19,6 +20,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ChainConfig {
 
+
+	@Bean
+	public SpringBeanUtil springBeanUtil() {
+		return new SpringBeanUtil();
+	}
 
 	@Bean
 	public BaseChain testCommand1(){
@@ -81,6 +87,14 @@ public class ChainConfig {
 		baseBean.addCommand(new ThirdCommand());
 
 		return baseBean;
+	}
+
+
+	@Bean
+	public BaseChain testCommand6(){
+		BaseChain baseChain = new BaseChain();
+		baseChain.addNameCommand("firstCommand","");
+		return baseChain;
 	}
 
 
