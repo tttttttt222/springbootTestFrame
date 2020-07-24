@@ -13,11 +13,13 @@ import com.examples.demo.service.command.SecondCommand;
 import com.examples.demo.service.command.ThirdCommand;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 /**
  * 项目名称:demo 描述: 创建人:ryw 创建时间:2019/4/30
  */
 @Configuration
+@DependsOn(value = "springBeanUtil")
 public class ChainConfig {
 
 
